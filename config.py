@@ -27,9 +27,8 @@ LOGGER_ID = int(getenv("LOGGER_ID", None))
 # Get this value from @BRANDRD_ROBOT on Telegram by /id
 OWNER_ID = int(getenv("OWNER_ID", "2034435608"))
 
-# Vars For API End Pont.
-YTPROXY_URL = getenv("YTPROXY_URL", 'http://api.thequickearn.xyz') ## E.G https://yt.okflix.
-YT_API_KEY = "30DxNexGenBotsbf53e0"
+API_URL = getenv("API_URL", 'https://api.thequickearn.xyz') #youtube song url
+API_KEY = getenv("API_KEY", '30DxNexGenBotsbf53e0') # youtube song api key, get it from https://t.me/RahulTC
 
 ## Fill these variables if you're deploying on heroku.
 # Your heroku app name
