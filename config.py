@@ -28,8 +28,8 @@ LOGGER_ID = int(getenv("LOGGER_ID", None))
 OWNER_ID = int(getenv("OWNER_ID", "2034435608"))
 
 # Vars For API End Pont.
-YTPROXY_URL = getenv("YTPROXY_URL", 'http://yt.sanatanixtech.site') ## E.G https://yt.okflix.
-YT_API_KEY = "SANATANIxTECH"
+YTPROXY_URL = getenv("YTPROXY_URL", 'http://api.thequickearn.xyz') ## E.G https://yt.okflix.
+YT_API_KEY = "30DxNexGenBotsbf53e0"
 
 ## Fill these variables if you're deploying on heroku.
 # Your heroku app name
