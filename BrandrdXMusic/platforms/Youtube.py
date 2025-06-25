@@ -1,10 +1,13 @@
-#⋆⎯𝅃⃪꯭꯭᳚𝅃꯭💀 ⃪꯭〬⃝𝄄𝄀꯭𝄄˗˗𝜄꯭꯭꯭꯭֯𝜘꯭꯭꯭꯭𝜘꯭꯭꯭꯭𝛐꯭꯭꯭꯭̽͝𝜍꯭꯭꯭꯭̽𝖊꯭꯭꯭꯭𝜘꯭꯭꯭꯭𝜏𓂃🤍:
-
+import asyncio
+import os
+import re
+import json
+from typing import Union
 import requests
 import yt_dlp
 from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
-from youtubesearchpython.future import VideosSearch
+from youtubesearchpython.__future__ import VideosSearch
 from BrandrdXMusic.utils.database import is_on_off
 from BrandrdXMusic.utils.formatters import time_to_seconds
 import os
@@ -111,6 +114,11 @@ async def check_file_size(link):
     if info is None:
         return None
 
+    formats = info.get('formats', [])
+    if not formats:
+        print("No formats found.")
+        return None
+
     total_size = parse_size(formats)
     return total_size
 
@@ -130,7 +138,7 @@ async def shell_cmd(cmd):
 
 
 class YouTubeAPI:
-    def init(self):
+    def __init__(self):
         self.base = "https://www.youtube.com/watch?v="
         self.regex = r"(?:youtube\.com|youtu\.be)"
         self.status = "https://www.youtube.com/oembed?url="
@@ -216,7 +224,7 @@ class YouTubeAPI:
             thumbnail = result["thumbnails"][0]["url"].split("?")[0]
         return thumbnail
 
-async def video(self, link: str, videoid: Union[bool, str] = None):
+    async def video(self, link: str, videoid: Union[bool, str] = None):
         if videoid:
             link = self.base + link
         if "&" in link:
@@ -329,7 +337,7 @@ async def video(self, link: str, videoid: Union[bool, str] = None):
         thumbnail = result[query_type]["thumbnails"][0]["url"].split("?")[0]
         return title, duration_min, thumbnail, vidid
 
-async def download(
+    async def download(
         self,
         link: str,
         mystic,
@@ -437,8 +445,7 @@ async def download(
                     "-g",
                     "-f",
                     "best[height<=?720][width<=?1280]",
-
-f"{link}",
+                    f"{link}",
                     stdout=asyncio.subprocess.PIPE,
                     stderr=asyncio.subprocess.PIPE,
                 )
