@@ -30,6 +30,10 @@ OWNER_ID = int(getenv("OWNER_ID", "2034435608"))
 API_URL = getenv("API_URL", 'https://api.thequickearn.xyz') #youtube song url
 API_KEY = getenv("X-API-Key", '30DxNexGenBots99247c') # youtube song api key, get it from https://t.me/RahulTC
 
+# Vars For API End Pont.
+YTPROXY_URL = getenv("YTPROXY_URL", 'https://tgapi.xbitcode.com') ## E.G https://yt.okflix.
+YT_API_KEY = getenv("YT_API_KEY" , 'xbit_0000774588759441666043' ) ## get your secret key from Mr cute x - @MR_CUTE_X
+
 ## Fill these variables if you're deploying on heroku.
 # Your heroku app name
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
