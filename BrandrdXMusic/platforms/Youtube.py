@@ -15,7 +15,9 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from youtubesearchpython.__future__ import VideosSearch, CustomSearch
 import base64
-
+from BrandrdXMusic import LOGGER
+from BrandrdXMusic.utils.database import is_on_off
+from BrandrdXMusic.utils.formatters import time_to_seconds
 from config import YT_API_KEY, YTPROXY_URL as YTPROXY
 
 logger = LOGGER(__name__)
@@ -531,90 +533,4 @@ class YouTubeAPI:
                     "User-Agent": "Mozilla/5"
                 }
                 xyz = os.path.join("downloads", f"{vid_id}.mp4")
-                if os.path.exists(xyz):
-                    return xyz
-                getVideo = requests.get(f"{YTPROXY}/beta/{vid_id}", headers=headers, timeout=60)
-                try:
-                    videoData = getVideo.json()
-                except Exception as e:
-                    print(f"Invalid response from API: {str(e)}")
-                    return None
-                status = videoData.get('status')
-                if status == 'success':
-                    videolink = videoData['video_sd']
-                    video_url = base64.b64decode(videolink).decode()
-                    logger.debug(f"Got video url {video_url}")
-                    ydl_opts = get_ydl_opts(f"downloads/{vid_id}.mp4")
-                    with ThreadPoolExecutor(max_workers=4) as executor:
-                        future = executor.submit(lambda: yt_dlp.YoutubeDL(ydl_opts).download(video_url))
-                        future.result()  
-                    return xyz
-                elif status == 'error':
-                    print(f"Error: {videoData.get('message', 'Unknown error from API.')}")
-                    return None
-                else:
-                    print("Could not fetch Backend \nPlease contact API provider.")
-                    return None
-            except requests.exceptions.RequestException as e:
-                print(f"Network error while downloading: {str(e)}")
-            except json.JSONDecodeError as e:
-                print(f"Invalid response from proxy: {str(e)}")
-            except Exception as e:
-                print(f"Error in downloading song: {str(e)}")
-            return None
-
-        def song_video_dl():
-            formats = f"{format_id}+140"
-            fpath = f"downloads/{title}"
-            ydl_optssx = {
-                "format": formats,
-                "outtmpl": fpath,
-                "geo_bypass": True,
-                "nocheckcertificate": True,
-                "quiet": True,
-                "no_warnings": True,
-                "cookiefile" : cookie_txt_file(),
-                "prefer_ffmpeg": True,
-                "merge_output_format": "mp4",
-            }
-            x = yt_dlp.YoutubeDL(ydl_optssx)
-            x.download([link])
-
-        def song_audio_dl():
-            fpath = f"downloads/{title}.%(ext)s"
-            ydl_optssx = {
-                "format": format_id,
-                "outtmpl": fpath,
-                "geo_bypass": True,
-                "nocheckcertificate": True,
-                "quiet": True,
-                "no_warnings": True,
-                "cookiefile" : cookie_txt_file(),
-                "prefer_ffmpeg": True,
-                "postprocessors": [
-                    {
-                        "key": "FFmpegExtractAudio",
-                        "preferredcodec": "mp3",
-                        "preferredquality": "192",
-                    }
-                ],
-            }
-            x = yt_dlp.YoutubeDL(ydl_optssx)
-            x.download([link])
-
-        if songvideo:
-            await loop.run_in_executor(None, song_video_dl)
-            fpath = f"downloads/{title}.mp4"
-            return fpath
-        elif songaudio:
-            await loop.run_in_executor(None, song_audio_dl)
-            fpath = f"downloads/{title}.mp3"
-            return fpath
-        elif video:
-            direct = True
-            downloaded_file = await loop.run_in_executor(None, lambda:video_dl(vid_id))
-        else:
-            direct = True
-            downloaded_file = await loop.run_in_executor(None, lambda:audio_dl(vid_id))
-
-        return downloaded_file, direct
+   
