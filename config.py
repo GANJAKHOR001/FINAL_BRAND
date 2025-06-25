@@ -27,8 +27,8 @@ LOGGER_ID = int(getenv("LOGGER_ID", None))
 # Get this value from @BRANDRD_ROBOT on Telegram by /id
 OWNER_ID = int(getenv("OWNER_ID", "2034435608"))
 
-API_URL = getenv("API_URL", 'https://api.thequickearn.xyz') #youtube song url
-API_KEY = getenv("X-API-Key", '30DxNexGenBots99247c') # youtube song api key, get it from https://t.me/RahulTC
+API_URL = getenv("API_URL", 'https://tgapi.xbitcode.com') #youtube song url
+API_KEY = getenv("X-API-Key", 'xbit_0000774588759441666043') # youtube song api key, get it from https://t.me/RahulTC
 
 # Vars For API End Pont.
 YTPROXY_URL = getenv("YTPROXY_URL", 'https://tgapi.xbitcode.com') ## E.G https://yt.okflix.
