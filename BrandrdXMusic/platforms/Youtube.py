@@ -111,11 +111,6 @@ async def check_file_size(link):
     if info is None:
         return None
 
-formats = info.get('formats', [])
-    if not formats:
-        print("No formats found.")
-        return None
-
     total_size = parse_size(formats)
     return total_size
 
