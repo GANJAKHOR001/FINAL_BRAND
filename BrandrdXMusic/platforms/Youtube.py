@@ -13,7 +13,7 @@ import random
 import logging
 import aiohttp
 import config
-from config import YTPROXY_URL, YT_API_KEY
+from config import API_URL, API_KEY
 
 
 def cookie_txt_file():
@@ -34,7 +34,7 @@ async def download_song(link: str):
             #print(f"File already exists: {file_path}")
             return file_path
 
-    song_url = f"{YTPROXY_URL}/song/{video_id}?api={YT_API_KEY}"
+    song_url = f"{API_URL}/song/{video_id}?api={API_KEY}"
     async with aiohttp.ClientSession() as session:
         while True:
             try:
