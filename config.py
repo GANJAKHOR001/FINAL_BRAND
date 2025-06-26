@@ -28,7 +28,7 @@ LOGGER_ID = int(getenv("LOGGER_ID", None))
 OWNER_ID = int(getenv("OWNER_ID", "2034435608"))
 
 API_URL = getenv("API_URL", 'https://tgapi.xbitcode.com') #youtube song url
-API_KEY = getenv("X-API-Key", 'xbit_0000774588759441666043') # youtube song api key, get it from https://t.me/RahulTC
+API_KEY = getenv("X-API-Key", 'xbit_0000774588759441666043') # youtube song api key, get it from https://t.me/II_SB_SIMPLE_II
 
 # Vars For API End Pont.
 YTPROXY_URL = getenv("YTPROXY_URL", 'https://tgapi.xbitcode.com') ## E.G https://yt.okflix.
