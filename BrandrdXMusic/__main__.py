@@ -12,6 +12,14 @@ from BrandrdXMusic.plugins import ALL_MODULES
 from BrandrdXMusic.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 
+#Main py me import
+
+
+from config import WEB_APP  
+import subprocess
+if WEB_APP:
+        subprocess.Popen(['python3', 'app.py'])
+
 
 async def init():
     if (
