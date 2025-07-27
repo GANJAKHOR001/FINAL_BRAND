@@ -5,6 +5,9 @@ from os import getenv
 from dotenv import load_dotenv
 from pyrogram import filters
 
+#Config me
+
+WEB_APP = getenv("WEB_APP", True)
 load_dotenv()
 
 # Get this value from my.telegram.org/apps
